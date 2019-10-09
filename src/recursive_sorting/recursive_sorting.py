@@ -1,17 +1,32 @@
 # TO-DO: complete the helpe function below to merge 2 sorted arrays
 def merge( arrA, arrB ):
-    elements = len( arrA ) + len( arrB )
-    merged_arr = [0] * elements
-    # TO-DO
+    result = []
+    arrA_index = 0
+    arrB_index = 0
+
+    while arrA_index < len(arrA) and arrB_index < len(arrB):
+      if arrA[arrA_index] < arrB[arrB_index]:
+        result.append(arrA[arrA_index])
+        arrA_index += 1 
+      else:
+        result.append(arrB[arrB_index])
+        arrB_index += 1
     
-    return merged_arr
+    if arrA_index == len(arrA):
+      result.extend(arrB[arrB_index:])
+    else:
+      result.extend(arrA[arrA_index:])
+
+    return result
 
 
-# TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort( arr ):
-    # TO-DO
+    if len(arr) <= 1: 
+      return arr
+    midpoint = int(len(arr) / 2)
+    leftArray, rightArray = merge_sort(arr[:midpoint]), merge_sort(arr[midpoint:])
+    return merge(leftArray, rightArray)
 
-    return arr
 
 
 # STRETCH: implement an in-place merge sort algorithm
